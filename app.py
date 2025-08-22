@@ -497,7 +497,7 @@ def index():
                 replyMessage(payload)
             else:
                 data = json.loads(events[0]["postback"]["data"])
-                action = data["action"]
+                action = data["action"] # action is the key to determine what to do next
                 if action == "get_near":
                     data["action"] = "get_detail"
                     payload["messages"] = [getCarouselMessage(data)]
@@ -552,7 +552,7 @@ def sendTextMessageToMe():
 def getNameEmojiMessage():
     lookUpStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     productId = "5ac21a8c040ab15980c9b43f"
-    name = "Miles"
+    name = "Daniel"
     emojis_list = list()
     for i,c in enumerate(name):
         emojis_list.append({
@@ -610,7 +610,7 @@ def getLocationConfirmMessage(title, latitude, longitude):
         "text": F"是否要規劃 {title} 附近景點？",
         "actions": [
         {
-            "type": "postback",
+            "type": "postback", #當你按下按鈕時，會傳送一個postback事件回傳開發者指定的資料，回server端找附近的景點，再變成imagine_carousel回傳給使用者
             "label": "是",
             "data": json.dumps(data)
         },
